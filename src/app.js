@@ -73,6 +73,26 @@ var data = {
     "MessageData": {}
 };
 
+// Check for local activity data
+var activityData = localStorage.getItem('activity_data');
+
+if(activityData)
+{
+	console.log(activityData);
+}
+else
+{
+	ajax({
+		url: 'http://www.bungie.net/Platform/Destiny/Advisors/',
+		type: 'json'
+	}, function(data){
+		activityData = data;
+		localStorage.setItem('activity_data', data);
+	}, function(error){
+		console.log('Error! ' + error);	
+	});
+}
+
 var MainMenu = new ui.Menu({
 	sections: [{
 		title: 'Activities',
