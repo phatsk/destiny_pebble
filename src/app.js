@@ -17,6 +17,7 @@ if(activityData && false)
 else
 {
 	AjaxWait();
+	/*
 	setTimeout(function(){
 		ajax({
 			url: 'http://www.bungie.net/Platform/Destiny/Advisors/',
@@ -31,7 +32,8 @@ else
 			console.log('Error! ' + error);	
 			ClearWait();
 		});
-	}, 2000);
+	}, 5000);
+	*/
 }
 
 var MainMenu = new ui.Menu({
