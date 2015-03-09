@@ -50,7 +50,9 @@ var waitTick = 1;
 
 function AjaxWait()
 {
-	waitCard.title = 'Loading';
+	waitCard.title('Loading');
+	waitCard.subtitle('.');
+	waitCard.show();
 
 	waitInterval = setInterval(function() {
 		var sub = '.';
@@ -63,7 +65,7 @@ function AjaxWait()
 
 		waitTick++;
 
-		waitCard.subtitle = sub;
+		waitCard.subtitle(sub);
 	}, 500);	
 }
 
