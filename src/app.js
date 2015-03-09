@@ -86,3 +86,5 @@ var MainMenu = new ui.Menu({
 		}]
 	}]
 });
+
+MainMenu.show();
