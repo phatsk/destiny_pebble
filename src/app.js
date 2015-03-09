@@ -78,10 +78,10 @@ var MainMenu = new ui.Menu({
 		title: 'Activities',
 		items: [{
 			title: 'Weekly Nightfall',
-			subtitle: '[NF][E][AB][A][LS]'
-		},{
+			subtitle: ['NF', 'E', 'AB', 'A', 'LS'].join('*')
+	},{
 			title: 'Weekly Heroic',
-			subtitle: '[H][LS]'
+			subtitle: ['H', 'LS'].join('*')
 		}]
 	}]
 });
