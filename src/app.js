@@ -4,7 +4,7 @@ var ajax = require('ajax');
 // Check for local activity data
 var activityData = localStorage.getItem('activity_data');
 
-if(activityData)
+if(activityData && false)
 {
 	console.log('Old data');
 	console.log(activityData);
@@ -57,7 +57,7 @@ function AjaxWait()
 	waitInterval = setInterval(function() {
 		var sub = '.';
 
-		waitTickf(waitTick == 10)
+		if(waitTick == 10)
 			waitTick = 1;
 
 		for(var i = 0; i < waitTick; i++)
