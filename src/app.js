@@ -9,34 +9,23 @@ var waitCard = new ui.Card({
 	subtitle: '.'
 });
 
-if(activityData && false)
-{
-	console.log('Old data');
-	console.log(activityData);
-}
-else
+if(!activityData)
 {
 	AjaxWait();
-	/*
-	setTimeout(function(){
-		ajax({
-			url: 'http://www.bungie.net/Platform/Destiny/Advisors/',
-			type: 'json'
-		}, function(data){
-			activityData = data;
-			localStorage.setItem('activity_data', data);
-			console.log('Fresh data');
-			console.log(data);
-			ClearWait();
-		}, function(error){
-			console.log('Error! ' + error);	
-			ClearWait();
-		});
-	}, 5000);
-	*/
+	ajax({
+		url: 'http://www.bungie.net/Platform/Destiny/Advisors/',
+		type: 'json'
+	}, function(data){
+		activityData = data;
+		localStorage.setItem('activity_data', data);
+		ClearWait();
+	}, function(error){
+		ClearWait();
+	});
 }
 
-/*
+console.log('Got activity data. ' + activityData.Response.data.nightfallActivityHash);
+
 var MainMenu = new ui.Menu({
 	sections: [{
 		title: 'Activities',
@@ -51,7 +40,6 @@ var MainMenu = new ui.Menu({
 });
 
 MainMenu.show();
-*/
 
 var waitInterval;
 var waitTick = 1;
@@ -59,6 +47,7 @@ var waitTick = 1;
 function AjaxWait()
 {
 	waitCard.show();
+	MainMenu.hide();
 
 	waitInterval = setInterval(function() {
 		var sub = '.';
@@ -78,5 +67,6 @@ function AjaxWait()
 function ClearWait()
 {
 	clearInterval(waitInterval);
+	MainMenu.show();
 	waitCard.hide();
 }
