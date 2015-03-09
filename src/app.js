@@ -75,6 +75,7 @@ var data = {
 
 // Check for local activity data
 var activityData = localStorage.getItem('activity_data');
+console.log(activityData);
 
 if(activityData)
 {
