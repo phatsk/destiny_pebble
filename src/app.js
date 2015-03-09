@@ -44,7 +44,7 @@ var MainMenu = new ui.Menu({
 
 MainMenu.show();
 
-var waitCard = new UI.Card();
+var waitCard = new ui.Card();
 var waitInterval;
 var waitTick = 1;
 
@@ -57,8 +57,8 @@ function AjaxWait()
 	waitInterval = setInterval(function() {
 		var sub = '.';
 
-		if(i == 10)
-			i = 1;
+		waitTickf(waitTick == 10)
+			waitTick = 1;
 
 		for(var i = 0; i < waitTick; i++)
 			sub += '.';
