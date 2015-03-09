@@ -1,20 +1,41 @@
 {
-	"uuid": "fe9bca93-5535-ad6a-902f-098feaac9b29",
-	"projectType": "pebblejs",
-	"shortName": "Destiny",
-	"longName": "Destiny Pebble",
-	"companyName": "380c1 Productions",
-	"versionCode": 1,
-	"versionLabel": "0.1",
-	"sdkVersion": "2",
-	"targetPlatforms": ["aplite"],
-	"watchapp": {
-		"watchface": false
-	},
-	"appKeys": {
-		"dummy": 0
-	},
-	"resources": {
-		"media": []
-	}
+    "appKeys": {},
+    "capabilities": [
+        ""
+    ],
+    "companyName": "380c1 Productions",
+    "longName": "Destiny Pebble",
+    "projectType": "pebblejs",
+    "resources": {
+        "media": [
+            {
+                "file": "images/menu_icon.png",
+                "menuIcon": true,
+                "name": "IMAGE_MENU_ICON",
+                "type": "png"
+            },
+            {
+                "file": "images/logo_splash.png",
+                "name": "IMAGE_LOGO_SPLASH",
+                "type": "png"
+            },
+            {
+                "file": "images/tile_splash.png",
+                "name": "IMAGE_TILE_SPLASH",
+                "type": "png"
+            },
+            {
+                "file": "fonts/UbuntuMono-Regular.ttf",
+                "name": "MONO_FONT_14",
+                "type": "font"
+            }
+        ]
+    },
+    "shortName": "Destiny",
+    "uuid": "fe9bca93-5535-ad6a-902f-098feaac9b29",
+    "versionCode": 1,
+    "versionLabel": "0.1",
+    "watchapp": {
+        "watchface": false
+    }
 }
