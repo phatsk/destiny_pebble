@@ -89,6 +89,7 @@ else
 	}, function(data){
 		activityData = data;
 		localStorage.setItem('activity_data', data);
+		console.log(data);
 	}, function(error){
 		console.log('Error! ' + error);	
 	});
