@@ -3,10 +3,10 @@ var ajax = require('ajax');
 
 // Check for local activity data
 var activityData = localStorage.getItem('activity_data');
-console.log(activityData);
 
 if(activityData)
 {
+	console.log('Old data');
 	console.log(activityData);
 }
 else
@@ -17,6 +17,7 @@ else
 	}, function(data){
 		activityData = data;
 		localStorage.setItem('activity_data', data);
+		console.log('Fresh data');
 		console.log(data);
 	}, function(error){
 		console.log('Error! ' + error);	
