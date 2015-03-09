@@ -36,6 +36,7 @@ else
 	*/
 }
 
+/*
 var MainMenu = new ui.Menu({
 	sections: [{
 		title: 'Activities',
@@ -50,6 +51,7 @@ var MainMenu = new ui.Menu({
 });
 
 MainMenu.show();
+*/
 
 var waitInterval;
 var waitTick = 1;
