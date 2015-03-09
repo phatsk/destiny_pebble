@@ -1,5 +1,4 @@
 var ui = require('ui');
-var window = require('window');
 
 var data = {
     "Response": {
