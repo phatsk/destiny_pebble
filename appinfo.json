@@ -1,0 +1,19 @@
+{
+  "uuid": "fe9bca93-5535-ad6a-902f-098feaac9b29",
+  "shortName": "Destiny",
+  "longName": "Destiny Pebble",
+  "companyName": "380c1 Productions",
+  "versionCode": 1,
+  "versionLabel": "0.1",
+  "sdkVersion": "2",
+  "targetPlatforms": ["aplite"],
+  "watchapp": {
+    "watchface": false
+  },
+  "appKeys": {
+    "dummy": 0
+  },
+  "resources": {
+    "media": []
+  }
+}
