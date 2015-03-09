@@ -4,6 +4,11 @@ var ajax = require('ajax');
 // Check for local activity data
 var activityData = localStorage.getItem('activity_data');
 
+var waitCard = new ui.Card({
+	title: 'Loading',
+	subtitle: '.'
+});
+
 if(activityData && false)
 {
 	console.log('Old data');
@@ -44,14 +49,11 @@ var MainMenu = new ui.Menu({
 
 MainMenu.show();
 
-var waitCard = new ui.Card();
 var waitInterval;
 var waitTick = 1;
 
 function AjaxWait()
 {
-	waitCard.title('Loading');
-	waitCard.subtitle('.');
 	waitCard.show();
 
 	waitInterval = setInterval(function() {
@@ -72,4 +74,5 @@ function AjaxWait()
 function ClearWait()
 {
 	clearInterval(waitInterval);
+	waitCard.hide();
 }
