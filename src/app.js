@@ -24,7 +24,9 @@ if(!activityData)
 	});
 }
 
-console.log('Got activity data. ' + activityData.Response.data.nightfallActivityHash);
+console.log('Got activity data. ' + JSON.stringify(activityData));
+
+// console.log('Got activity data. ' + activityData.Response.data.nightfallActivityHash);
 
 var MainMenu = new ui.Menu({
 	sections: [{
