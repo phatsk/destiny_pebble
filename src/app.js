@@ -158,10 +158,20 @@ function updateActivities()
 	getLocalData(nightfallHash, function(data){
 		var item = {
 			title: data.Response.data.activity.activityName,
-			subtitle: data.Response.data.activity.activityDescription
+			subtitle: data.Response.data.activity.activityDescription,
+			icon: data.Response.data.activity.icon.substring(1)
 		};
 
 		updateActivityMenu('nightfall', item);
+	});
+
+	getLocalData(weeklyHash, function(data){
+		var item = {
+			title: data.Response.data.activity.activityName,
+			subtitle: data.Response.data.activity.activityDescription
+		};
+
+		updateActivityMenu('weekly', item);
 	});
 }
 
