@@ -20,10 +20,9 @@ var MenuActivities = {
 	}
 };
 
-function updateMenu(activity, item)
+function updateActivityMenu(activity, item)
 {
 	var sections = [];
-
 
 	if(item)
 	{
@@ -31,19 +30,17 @@ function updateMenu(activity, item)
 		MenuActivities[activity] = item;
 	}
 
-	console.log('Updating activity menu: ' + JSON.stringify(activity));
-
-	var i = 0;
+	console.log('Updating activity menu: ' + JSON.stringify(MenuActivities));
 
 	for(var key in MenuActivities)
 	{
 		if(MenuActivities.hasOwnProperty(key))
 		{
-			MainMenu.section(i, MenuActivities[key]);
+			sections.push(MenuActivities[key]);
 		}
-
-		i++;
 	}
+
+	MainMenu.section(0, sections);
 }
 
 var MainMenu = new ui.Menu({
@@ -163,7 +160,7 @@ function updateActivities()
 			subtitle: data.Response.data.activity.activityDescription
 		};
 
-		updateMenu('nightfall', item);
+		updateActivityMenu('nightfall', item);
 	});
 }
 
