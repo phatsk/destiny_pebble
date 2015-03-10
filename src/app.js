@@ -40,6 +40,7 @@ function updateActivityMenu(activity, item)
 		}
 	}
 
+	console.log(JSON.stringify(sections));
 	MainMenu.section(0, {title: 'Activity', items: sections});
 }
 
