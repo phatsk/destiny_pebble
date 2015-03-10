@@ -189,6 +189,8 @@ function getLocalData(hash, callback)
 		data = localStorage.getItem(hash);
 		data = JSON.parse(data);
 
+		console.log('Data gathered from localStorage for hash `' + hash + '`: ' + JSON.stringify(data));
+
 		if(!data)
 			throw 'No activity data for ' + hash + ', fetching fresh data';
 	}
