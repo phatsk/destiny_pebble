@@ -159,8 +159,10 @@ function updateActivities()
 		var item = {
 			title: data.Response.data.activity.activityName,
 			subtitle: data.Response.data.activity.activityDescription,
-			icon: data.Response.data.activity.icon.replace(/^\//, '')
+			icon: 'NODE_STRIKE_FEATURED' 
 		};
+
+		console.log(item);
 
 		updateActivityMenu('nightfall', item);
 	});
@@ -191,7 +193,7 @@ function getLocalData(hash, callback)
 			throw 'No activity data for ' + hash + ', fetching fresh data';
 
 		console.log('Found local data, executing callback');
-		callback(data);
+		callback(JSON.stringify(data));
 	}
 	catch(e) {
 		console.log('Tried (unsuccessfully) to grab local data for ' + hash + ': ' + e);
