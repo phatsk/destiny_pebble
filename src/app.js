@@ -6,17 +6,32 @@ var ui = require('ui');
 var ajax = require('ajax');
 var activityData = false;
 var MenuActivities = {
-	nightfall: {},
-	weekly: {},
-	daily: {}
+	nightfall: {
+		title: 'Nightfall',
+		subtitle: 'Loading...'
+	},
+	weekly: {
+		title: 'Weekly',
+		subtitle: 'Loading...'
+	},
+	daily: {
+		title: 'Daily',
+		subtitle: 'Loading...'
+	}
 };
 
 function updateMenu(activity, item)
 {
 	var sections = [];
 
+
 	if(item)
+	{
+		console.log('Updating menu for ' + activity);
 		MenuActivities[activity] = item;
+	}
+
+	console.log('Updating activity menu: ' + JSON.stringify(activity));
 
 	var i = 0;
 
@@ -167,6 +182,7 @@ function getLocalData(hash, callback)
 		if(!data)
 			throw 'No activity data for ' + hash + ', fetching fresh data';
 
+		console.log('Found local data, executing callback');
 		callback(data);
 	}
 	catch(e) {
