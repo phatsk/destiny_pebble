@@ -191,9 +191,6 @@ function getLocalData(hash, callback)
 
 		if(!data)
 			throw 'No activity data for ' + hash + ', fetching fresh data';
-
-		console.log('Found local data, executing callback');
-		callback(JSON.stringify(data));
 	}
 	catch(e) {
 		console.log('Tried (unsuccessfully) to grab local data for ' + hash + ': ' + e);
@@ -213,5 +210,11 @@ function getLocalData(hash, callback)
 			ClearWait();
 			console.log('Could not get response from ' +  activityUrl + ': ' + error);
 		});
+	}
+
+	if(data)
+	{
+		console.log('Found local data for hash ' + hash + ', executing callback');
+		callback(JSON.stringify(data));
 	}
 }
