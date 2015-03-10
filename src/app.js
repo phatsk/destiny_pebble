@@ -159,7 +159,7 @@ function updateActivities()
 		var item = {
 			title: data.Response.data.activity.activityName,
 			subtitle: data.Response.data.activity.activityDescription,
-			icon: data.Response.data.activity.icon.substring(1)
+			icon: data.Response.data.activity.icon.replace(/^\//, '')
 		};
 
 		updateActivityMenu('nightfall', item);
