@@ -40,7 +40,7 @@ function updateActivityMenu(activity, item)
 		}
 	}
 
-	MainMenu.section(0, sections);
+	MainMenu.section(0, {title: 'Activity', items: sections});
 }
 
 var MainMenu = new ui.Menu({
