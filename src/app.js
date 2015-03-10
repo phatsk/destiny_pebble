@@ -150,7 +150,7 @@ function updateActivities()
 	});
 }
 
-function getLocalData(hash)
+function getLocalData(hash, callback)
 {
 	var data;
 	callback = callback || function() {};
