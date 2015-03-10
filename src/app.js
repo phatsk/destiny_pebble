@@ -217,6 +217,6 @@ function getLocalData(hash, callback)
 	if(data)
 	{
 		console.log('Found local data for hash ' + hash + ', executing callback');
-		callback(JSON.stringify(data));
+		callback(data);
 	}
 }
