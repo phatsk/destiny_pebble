@@ -30,7 +30,7 @@
                 "type": "font"
             },
 			{
-				"file": "img/theme/destiny/icons/node_strike_featured.png",
+				"file": "images/node_strike_featured.png",
 				"name": "NODE_STRIKE_FEATURED",
 				"type": "png"
 			}
