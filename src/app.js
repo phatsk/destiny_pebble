@@ -1,10 +1,14 @@
 var BUNGIE_API = {
-	ADVISORS: 'http://www.bungie.net/Platform/Destiny/Advisors/'
+	ADVISORS: 'http://www.bungie.net/Platform/Destiny/Advisors/',
+    MANIFEST: {
+        ACTIVITY: 'http://www.bungie.net/platform/Destiny/Manifest/Activity/' 
+    }
 };
 
 var ui = require('ui');
 var ajax = require('ajax');
 var activityData = false;
+
 var MenuActivities = {
 	nightfall: {
 		title: 'Nightfall',
@@ -68,17 +72,21 @@ var activityData;
 // Check for local activity data
 try 
 {
-	activityData = localStorage.getItem('activityData');
+    activityData = localStorage.getItem('activityData');
 	activityData = JSON.parse(activityData);
 
 	if(activityData)
 	{
+        var nfreset;
+        var dailyreset;
+
 		// Reset for Tuesday - weeklies reset together, so we can check against the Nightfall
 		if(today.getDay() == 2 && (nfreset = new Date(activityData.Response.data.nightfallResetDate)) && today > nfreset) // Tuesday
 		{
 			throw "Weekly data is stale, pulling some fresh";
 		}
-		else if((dailyreset = new Date(activityData.Response.data.dailyChapterResetDate)) && today > dailyreset)
+		
+        if((dailyreset = new Date(activityData.Response.data.dailyChapterResetDate)) && today > dailyreset)
 		{
 			throw "Daily data is stale, pulling some fresh";
 		}
@@ -175,6 +183,15 @@ function updateActivities()
 
 		updateActivityMenu('weekly', item);
 	});
+
+    getLocalData(dailyHash, function(data){
+        var item = {
+            title: data.Response.data.activity.activityName,
+            subtitle: data.Response.data.activity.activityDescription
+        };
+
+        updateActivityMenu('daily', item);
+    });
 }
 
 function getLocalData(hash, callback)
@@ -196,7 +213,7 @@ function getLocalData(hash, callback)
 	}
 	catch(e) {
 		console.log('Tried (unsuccessfully) to grab local data for ' + hash + ': ' + e);
-		var activityUrl = 'http://www.bungie.net/platform/Destiny/Manifest/Activity/' + hash.split('-')[hash.split('-').length-1];
+		var activityUrl = BUNGIE_API.MANIFEST.ACTIVITY + hash.split('-')[hash.split('-').length-1];
 
 		AjaxWait();
 
