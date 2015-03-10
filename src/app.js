@@ -18,15 +18,17 @@ function updateMenu(activity, item)
 	if(item)
 		MenuActivities[activity] = item;
 
+	var i = 0;
+
 	for(var key in MenuActivities)
 	{
 		if(MenuActivities.hasOwnProperty(key))
 		{
-			sections.push(MenuActivities[key]);
+			MainMenu.section(i, MenuActivities[key]);
 		}
-	}
 
-	MainMenu.sections(sections);
+		i++;
+	}
 }
 
 var MainMenu = new ui.Menu({
