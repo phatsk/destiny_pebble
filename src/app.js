@@ -208,6 +208,10 @@ function updateActivities()
 
     getLocalData(crucibleHash, function(data){
 		var activityHash = data.Response.data.requestedId;
+		console.log('-------------------------------------------------------------');
+		console.log(JSON.stringify(data.Response.definitions));
+		console.log('-------------------------------------------------------------');
+
 		var activityType = data.Response.definitions.activityTypes[activityHash].activityTypeName;
 
         var item = {
