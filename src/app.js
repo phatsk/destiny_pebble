@@ -12,7 +12,7 @@ var ui = require('ui');
 var ajax = require('ajax');
 var activityData = false;
 
-var DetailWindow = new UI.Card({
+var DetailWindow = new ui.Card({
 	title: 'Loading...',
 	scrollable: true
 });
@@ -82,7 +82,17 @@ var MainMenu = new ui.Menu({
 });
 
 MainMenu.on('select', function(event){
-	logUI(event.item.userdata.key);
+	var sections = event.item.userdata.getDetails();
+
+	logUI('Showing details for ' + event.item.userdata.key);
+
+	for(var key in sections)
+	{
+		if(sections.hasOwnProperty(key) && DetailWindow[key])
+		{
+			DetailWindow[key](sections[key]);
+		}
+	}
 });
 
 var waitCard = new ui.Card({
