@@ -93,6 +93,9 @@ MainMenu.on('select', function(event){
 			DetailWindow[key](sections[key]);
 		}
 	}
+
+	DetailWindow.show();
+	MainMenu.hide();
 });
 
 var waitCard = new ui.Card({
