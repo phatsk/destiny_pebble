@@ -9,7 +9,7 @@
     "resources": {
         "media": [
 			{
-				"file": "images/node_strike_featured_icon.png",
+				"file": "images/node_strike_icon_dithered.png",
 				"name": "NODE_STRIKE_FEATURED",
 				"type": "png"
 			}
