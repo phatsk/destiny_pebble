@@ -14,22 +14,30 @@ var MenuActivities = {
 	nightfall: {
 		title: 'Weekly Nightfall',
 		subtitle: 'Loading...',
-		key: 'NIGHTFALL'
+		userdata: {
+			key: 'NIGHTFALL'
+		}
 	},
 	weekly: {
 		title: 'Weekly Heroic',
 		subtitle: 'Loading...',
-		key: 'WEEKLY'
+		userdata: {
+			key: 'WEEKLY'
+		}
 	},
 	daily: {
 		title: 'Daily Heroic',
 		subtitle: 'Loading...',
-		key: 'DAILY'
+		userdata: {
+			key: 'DAILY'
+		}
 	},
 	crucible: {
 		title: 'Daily Crucible',
 		subtitle: 'Loading...',
-		key: 'CRUCIBLE'
+		userdata: {
+			key: 'CRUCIBLE'
+		}
 	}
 };
 
@@ -171,7 +179,7 @@ function updateActivities()
 	var nightfallHash = 'activity-nightfall-' + activityData.Response.data.nightfallActivityHash;
 	var weeklyHash = 'activity-weekly-' + activityData.Response.data.heroicStrikeHashes.join('-');
 	var dailyHash = 'activity-daily-' + activityData.Response.data.dailyChapterHashes.join('-');
-	var crucibleHash = 'activity-crucible-' + activity.Response.data.dailyCrucibleHash;
+	var crucibleHash = 'activity-crucible-' + activityData.Response.data.dailyCrucibleHash;
 
 	getLocalData(nightfallHash, function(data){
 		var item = {
@@ -198,7 +206,7 @@ function updateActivities()
         updateActivityMenu('daily', item);
     });
 
-    getLocalData(dailyCrucible, function(data){
+    getLocalData(crucibleHash, function(data){
 		var activityHash = data.Response.data.requestedId;
 		var activityType = data.Response.definitions.activityTypes[activityHash].activityTypeName;
 
