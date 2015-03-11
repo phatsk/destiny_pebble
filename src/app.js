@@ -1,7 +1,8 @@
 var BUNGIE_API = {
 	ADVISORS: 'http://www.bungie.net/Platform/Destiny/Advisors/',
     MANIFEST: {
-        ACTIVITY: 'http://www.bungie.net/platform/Destiny/Manifest/Activity/' 
+        ACTIVITY: 'http://www.bungie.net/platform/Destiny/Manifest/Activity/',
+		ACTIVITY_TYPE: 'http://www.bungie.net/platform/Destiny/Manifest/ActivityType/'	
     }
 };
 
@@ -12,31 +13,44 @@ var activityData = false;
 var MenuActivities = {
 	nightfall: {
 		title: 'Weekly Nightfall',
-		subtitle: 'Loading...'
+		subtitle: 'Loading...',
+		key: 'NIGHTFALL'
 	},
 	weekly: {
 		title: 'Weekly Heroic',
-		subtitle: 'Loading...'
+		subtitle: 'Loading...',
+		key: 'WEEKLY'
 	},
 	daily: {
 		title: 'Daily Heroic',
-		subtitle: 'Loading...'
+		subtitle: 'Loading...',
+		key: 'DAILY'
+	},
+	crucible: {
+		title: 'Daily Crucible',
+		subtitle: 'Loading...',
+		key: 'CRUCIBLE'
 	}
 };
 
 function updateActivityMenu(activity, item)
 {
 	var sections = [];
+	var key;
 
 	if(item)
 	{
 		console.log('Updating menu for ' + activity);
-		MenuActivities[activity] = item;
+
+		for(key in item)
+		{
+			MenuActivities[activity][key] = item[key];
+		}
 	}
 
 	console.log('Updating activity menu: ' + JSON.stringify(MenuActivities));
 
-	for(var key in MenuActivities)
+	for(key in MenuActivities)
 	{
 		if(MenuActivities.hasOwnProperty(key))
 		{
@@ -49,20 +63,11 @@ function updateActivityMenu(activity, item)
 }
 
 var MainMenu = new ui.Menu({
-	sections: [{
-		title: 'Activities',
-		items: [{
-			title: 'Weekly Nightfall',
-			subtitle: ['NF', 'E', 'AB', 'A', 'LS'].join('*')
-	},{
-			title: 'Weekly Heroic',
-			subtitle: ['H', 'LS'].join('*')
-		}]
-	}]
+	sections: []
 });
 
 MainMenu.on('select', function(event){
-    console.log(event);
+    console.log(event.section.key);
 });
 
 var waitCard = new ui.Card({
@@ -166,11 +171,11 @@ function updateActivities()
 	var nightfallHash = 'activity-nightfall-' + activityData.Response.data.nightfallActivityHash;
 	var weeklyHash = 'activity-weekly-' + activityData.Response.data.heroicStrikeHashes.join('-');
 	var dailyHash = 'activity-daily-' + activityData.Response.data.dailyChapterHashes.join('-');
+	var crucibleHash = 'activity-crucible-' + activity.Response.data.dailyCrucibleHash;
 
 	getLocalData(nightfallHash, function(data){
 		var item = {
-			title: 'Test', //data.Response.data.activity.activityName,
-			icon: 'NODE_STRIKE_FEATURED' 
+			subtitle: data.Response.data.activity.activityDescription
 		};
 
 		updateActivityMenu('nightfall', item);
@@ -178,7 +183,6 @@ function updateActivities()
 
 	getLocalData(weeklyHash, function(data){
 		var item = {
-			title: data.Response.data.activity.activityName,
 			subtitle: data.Response.data.activity.activityDescription
 		};
 
@@ -192,6 +196,18 @@ function updateActivities()
         };
 
         updateActivityMenu('daily', item);
+    });
+
+    getLocalData(dailyCrucible, function(data){
+		var activityHash = data.Response.data.requestedId;
+		var activityType = data.Response.definitions.activityTypes[activityHash].activityTypeName;
+
+        var item = {
+			title: activityType + ': ' + data.Response.data.activity.activityName,
+            subtitle: data.Response.data.activity.activityDescription
+        };
+
+        updateActivityMenu('crucible', item);
     });
 }
 
@@ -209,7 +225,7 @@ function getLocalData(hash, callback)
 
 		console.log('Data gathered from localStorage for hash `' + hash + '`: ' + JSON.stringify(data));
 
-		if(!data)
+		if(!data || !data.Response.definitions)
 			throw 'No activity data for ' + hash + ', fetching fresh data';
 	}
 	catch(e) {
@@ -219,7 +235,7 @@ function getLocalData(hash, callback)
 		AjaxWait();
 
 		ajax({
-			url: activityUrl,
+			url: activityUrl + '?definitions=true',
 			type: 'json'
 		}, function(data){
 			localStorage.setItem(hash, JSON.stringify(data));
