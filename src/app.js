@@ -61,6 +61,10 @@ var MainMenu = new ui.Menu({
 	}]
 });
 
+MainMenu.on('select', function(event){
+    console.log(JSON.stringify(event));
+});
+
 var waitCard = new ui.Card({
 	title: 'Loading',
 	subtitle: '.'
