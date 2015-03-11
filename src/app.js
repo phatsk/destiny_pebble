@@ -1,5 +1,5 @@
 var BUNGIE_API = {
-	ADVISORS: 'http://www.bungie.net/Platform/Destiny/Advisors/',
+	ADVISORS: 'http://www.bungie.net/Platform/Destiny/Advisors/?definitions=true',
     MANIFEST: {
         ACTIVITY: 'http://www.bungie.net/platform/Destiny/Manifest/Activity/',
 		ACTIVITY_TYPE: 'http://www.bungie.net/platform/Destiny/Manifest/ActivityType/'	
@@ -75,7 +75,7 @@ var MainMenu = new ui.Menu({
 });
 
 MainMenu.on('select', function(event){
-    console.log(event.section.key);
+    console.log(event.section.userdata.key);
 });
 
 var waitCard = new ui.Card({
@@ -118,7 +118,7 @@ catch(e) {
  * We didn't get any valid activityData so let's pull
  * fresh data from Bungie
  */
-if(!activityData)
+if(!activityData || !activityData.Response.definitions)
 {
 	AjaxWait(); // AJAX Waiter
 
