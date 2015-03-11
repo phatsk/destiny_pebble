@@ -241,8 +241,9 @@ function getLocalData(hash, callback)
 			throw 'No activity data for ' + hash + ', fetching fresh data';
 	}
 	catch(e) {
-		console.log('Tried (unsuccessfully) to grab local data for ' + hash + ': ' + e);
 		var activityUrl = BUNGIE_API.MANIFEST.ACTIVITY + hash.split('-')[hash.split('-').length-1];
+		console.log('Tried (unsuccessfully) to grab local data for ' + hash + ': ' + e);
+		console.log('Pulling data for ' + hash + ' from: ' + activityUrl);
 
 		AjaxWait();
 
