@@ -1,4 +1,5 @@
-var CACHE_INVALIDATE = true;
+// Set to true to always pull fresh data - use sparingly!
+var CACHE_INVALIDATE = false;
 var BUNGIE_API = {
 	ADVISORS: 'http://www.bungie.net/Platform/Destiny/Advisors/?definitions=true',
     MANIFEST: {
@@ -76,7 +77,7 @@ var MainMenu = new ui.Menu({
 });
 
 MainMenu.on('select', function(event){
-    console.log(JSON.stringify(event.section));
+    console.log(event.item.userdata.key);
 });
 
 var waitCard = new ui.Card({
