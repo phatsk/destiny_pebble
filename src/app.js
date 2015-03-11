@@ -58,7 +58,7 @@ function updateActivityMenu(activity, item)
 		}
 	}
 
-	console.log('Updating activity menu: ' + JSON.stringify(MenuActivities));
+	logUI('Updating activity menu: ' + JSON.stringify(MenuActivities));
 
 	for(key in MenuActivities)
 	{
@@ -68,7 +68,7 @@ function updateActivityMenu(activity, item)
 		}
 	}
 
-	console.log(JSON.stringify(sections));
+	logUI('New menu sections: ' + JSON.stringify(sections));
 	MainMenu.section(0, {title: 'Activity', items: sections});
 }
 
@@ -77,7 +77,7 @@ var MainMenu = new ui.Menu({
 });
 
 MainMenu.on('select', function(event){
-    console.log(event.item.userdata.key);
+	logUI(event.itemuserdata.key);
 });
 
 var waitCard = new ui.Card({
@@ -112,7 +112,7 @@ try
 	}
 }
 catch(e) {
-	console.log('Tried (unsuccessfully) to grab local data: ' + e);
+	logError('Tried (unsuccessfully) to grab local data: ' + e);
 	activityData = false;
 }
 
@@ -131,16 +131,19 @@ if(!activityData || !activityData.Response.definitions || CACHE_INVALIDATE)
 		activityData = data;
 		localStorage.setItem('activityData', JSON.stringify(data));
 		ClearWait();
-		console.log('Got remote activity data: ' + JSON.stringify(data));
+		
+		logRemote('Got remote activity data: ' + JSON.stringify(data));
+		
 		updateActivities();
 	}, function(error){
 		ClearWait();
-		console.log('Could not get response from ' +  BUNGIE_API.ADVISORS + ': ' + error);
+
+		logError('Could not get response from ' +  BUNGIE_API.ADVISORS + ': ' + error);
 	});
 }
 else
 {
-	console.log('Got locally stored activity data: ' + JSON.stringify(activityData.Response.data.nightfallActivityHash));
+	logLocal('Got locally stored activity data: ' + JSON.stringify(activityData.Response.data.nightfallActivityHash));
 	updateActivities();
 }
 
@@ -210,10 +213,6 @@ function updateActivities()
 
     getLocalData(crucibleHash, function(data){
 		var activityHash = data.Response.data.activity.activityTypeHash;
-		console.log('-------------------------------------------------------------');
-		console.log(JSON.stringify(data.Response.definitions));
-		console.log('-------------------------------------------------------------');
-
 		var activityType = data.Response.definitions.activityTypes[activityHash].activityTypeName;
 
         var item = {
@@ -230,14 +229,14 @@ function getLocalData(hash, callback)
 	var data;
 	callback = callback || function() {};
 
-	console.log('Getting local data for hash: ' + hash);
+	logInfo('Getting local data for hash: ' + hash);
 
 	try 
 	{
 		data = localStorage.getItem(hash);
 		data = JSON.parse(data);
 
-		console.log('Data gathered from localStorage for hash `' + hash + '`: ' + JSON.stringify(data));
+		logLocal('Data gathered from localStorage for hash `' + hash + '`: ' + JSON.stringify(data));
 
 		if(!data || !data.Response.definitions)
 			throw 'No activity data for ' + hash + ', fetching fresh data';
@@ -247,8 +246,8 @@ function getLocalData(hash, callback)
 	}
 	catch(e) {
 		var activityUrl = BUNGIE_API.MANIFEST.ACTIVITY + hash.split('-')[hash.split('-').length-1];
-		console.log('Tried (unsuccessfully) to grab local data for ' + hash + ': ' + e);
-		console.log('Pulling data for ' + hash + ' from: ' + activityUrl);
+		logError('Tried (unsuccessfully) to grab local data for ' + hash + ': ' + e);
+		logInfo('Pulling data for ' + hash + ' from: ' + activityUrl);
 
 		AjaxWait();
 
@@ -258,17 +257,51 @@ function getLocalData(hash, callback)
 		}, function(data){
 			localStorage.setItem(hash, JSON.stringify(data));
 			ClearWait();
-			console.log('Got remote activity data: ' + JSON.stringify(data));
+
+			logRemote('Got remote activity data: ' + JSON.stringify(data));
+			
 			callback(data);
 		}, function(error){
 			ClearWait();
-			console.log('Could not get response from ' +  activityUrl + ': ' + error);
+
+			logError('Could not get response from ' +  activityUrl + ': ' + error);
 		});
 	}
 
 	if(data)
 	{
-		console.log('Found local data for hash ' + hash + ', executing callback');
+		logLocal('Found local data for hash ' + hash + ', executing callback');
 		callback(data);
 	}
 }
+
+function log(prefix, message)
+{
+	return console.log('[' + prefix + '] ' + message);
+}
+
+function logUI(message)
+{
+	return log('UI', message);
+}
+
+function logError(message)
+{
+	return log('EE', message);
+}
+
+function logInfo(message)
+{
+	return log('II', message);
+}
+
+function logRemote(message)
+{
+	return log('<<', message);
+}
+
+function logLocal(message)
+{
+	return log('>>', message);
+}
+
