@@ -77,7 +77,7 @@ var MainMenu = new ui.Menu({
 });
 
 MainMenu.on('select', function(event){
-	logUI(event.itemuserdata.key);
+	logUI(event.item.userdata.key);
 });
 
 var waitCard = new ui.Card({
@@ -188,7 +188,10 @@ function updateActivities()
 
 	getLocalData(nightfallHash, function(data){
 		var item = {
-			subtitle: data.Response.data.activity.activityDescription
+			subtitle: data.Response.data.activity.activityDescription,
+			userdata: {
+				key: nightfallHash
+			}
 		};
 
 		updateActivityMenu('nightfall', item);
@@ -196,7 +199,10 @@ function updateActivities()
 
 	getLocalData(weeklyHash, function(data){
 		var item = {
-			subtitle: data.Response.data.activity.activityDescription
+			subtitle: data.Response.data.activity.activityDescription,
+			userdata: {
+				key: weeklyHash
+			}
 		};
 
 		updateActivityMenu('weekly', item);
@@ -205,7 +211,10 @@ function updateActivities()
     getLocalData(dailyHash, function(data){
         var item = {
             title: data.Response.data.activity.activityName,
-            subtitle: data.Response.data.activity.activityDescription
+            subtitle: data.Response.data.activity.activityDescription,
+			userdata: {
+				key: dailyHash
+			}
         };
 
         updateActivityMenu('daily', item);
@@ -217,7 +226,10 @@ function updateActivities()
 
         var item = {
 			title: activityType + ': ' + data.Response.data.activity.activityName,
-            subtitle: data.Response.data.activity.activityDescription
+            subtitle: data.Response.data.activity.activityDescription,
+			userdata: {
+				key: crucibleHash 
+			}
         };
 
         updateActivityMenu('crucible', item);
