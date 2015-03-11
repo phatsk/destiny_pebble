@@ -76,7 +76,7 @@ var MainMenu = new ui.Menu({
 });
 
 MainMenu.on('select', function(event){
-    console.log(event.section.userdata.key);
+    console.log(JSON.stringify(event.section));
 });
 
 var waitCard = new ui.Card({
