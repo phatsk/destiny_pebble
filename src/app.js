@@ -11,15 +11,15 @@ var activityData = false;
 
 var MenuActivities = {
 	nightfall: {
-		title: 'Nightfall',
+		title: 'Weekly Nightfall',
 		subtitle: 'Loading...'
 	},
 	weekly: {
-		title: 'Weekly',
+		title: 'Weekly Heroic',
 		subtitle: 'Loading...'
 	},
 	daily: {
-		title: 'Daily',
+		title: 'Daily Heroic',
 		subtitle: 'Loading...'
 	}
 };
@@ -170,11 +170,8 @@ function updateActivities()
 	getLocalData(nightfallHash, function(data){
 		var item = {
 			title: data.Response.data.activity.activityName,
-			subtitle: data.Response.data.activity.activityDescription,
 			icon: 'NODE_STRIKE_FEATURED' 
 		};
-
-		console.log(item);
 
 		updateActivityMenu('nightfall', item);
 	});
