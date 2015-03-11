@@ -12,6 +12,11 @@ var ui = require('ui');
 var ajax = require('ajax');
 var activityData = false;
 
+var DetailWindow = new UI.Card({
+	title: 'Loading...',
+	scrollable: true
+});
+
 var MenuActivities = {
 	nightfall: {
 		title: 'Weekly Nightfall',
@@ -81,8 +86,7 @@ MainMenu.on('select', function(event){
 });
 
 var waitCard = new ui.Card({
-	title: 'Loading',
-	subtitle: '.'
+	title: 'Loading...'
 });
 
 var today = new Date();
@@ -149,32 +153,14 @@ else
 
 MainMenu.show();
 
-var waitInterval;
-var waitTick = 1;
-
 function AjaxWait()
 {
 	waitCard.show();
 	MainMenu.hide();
-
-	waitInterval = setInterval(function() {
-		var sub = '.';
-
-		if(waitTick == 10)
-			waitTick = 1;
-
-		for(var i = 0; i < waitTick; i++)
-			sub += '.';
-
-		waitTick++;
-
-		waitCard.subtitle(sub);
-	}, 500);	
 }
 
 function ClearWait()
 {
-	clearInterval(waitInterval);
 	MainMenu.show();
 	waitCard.hide();
 }
@@ -201,7 +187,14 @@ function updateActivities()
 		var item = {
 			subtitle: data.Response.data.activity.activityDescription,
 			userdata: {
-				key: weeklyHash
+				key: weeklyHash,
+				getDetails: function() {
+					return {
+						title: 'Weekly Heroic',
+						subtitle: 'Strike',
+						body: data.Response.data.activity.activityDescription
+					};
+				}
 			}
 		};
 
