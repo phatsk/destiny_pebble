@@ -189,7 +189,14 @@ function updateActivities()
 		var item = {
 			subtitle: data.Response.data.activity.activityDescription,
 			userdata: {
-				key: nightfallHash
+				key: nightfallHash,
+				getDetails: function() {
+					return {
+						title: 'Weekly Nightfall',
+						subtitle: 'Strike',
+						body: data.Response.data.activity.activityDescription
+					};
+				}
 			}
 		};
 
@@ -219,7 +226,14 @@ function updateActivities()
             title: data.Response.data.activity.activityName,
             subtitle: data.Response.data.activity.activityDescription,
 			userdata: {
-				key: dailyHash
+				key: dailyHash,
+				getDetails: function() {
+					return {
+						title: 'Daily Heroic',
+						subtitle: data.Response.data.activity.activityName,
+						body: data.Response.data.activity.activityDescription
+					};
+				}
 			}
         };
 
@@ -234,7 +248,14 @@ function updateActivities()
 			title: activityType + ': ' + data.Response.data.activity.activityName,
             subtitle: data.Response.data.activity.activityDescription,
 			userdata: {
-				key: crucibleHash 
+				key: crucibleHash,
+				getDetails: function() {
+					return {
+						title: activityType,
+						subtitle: data.Response.data.activity.activityName,
+						body: data.Response.data.activity.activityDescription
+					};
+				}
 			}
         };
 
