@@ -1,3 +1,4 @@
+var CACHE_INVALIDATE = true;
 var BUNGIE_API = {
 	ADVISORS: 'http://www.bungie.net/Platform/Destiny/Advisors/?definitions=true',
     MANIFEST: {
@@ -118,7 +119,7 @@ catch(e) {
  * We didn't get any valid activityData so let's pull
  * fresh data from Bungie
  */
-if(!activityData || !activityData.Response.definitions)
+if(!activityData || !activityData.Response.definitions || CACHE_INVALIDATE)
 {
 	AjaxWait(); // AJAX Waiter
 
@@ -239,6 +240,9 @@ function getLocalData(hash, callback)
 
 		if(!data || !data.Response.definitions)
 			throw 'No activity data for ' + hash + ', fetching fresh data';
+        
+        if(CACHE_INVALIDATE)
+            throw 'Manually flushing cache!';
 	}
 	catch(e) {
 		var activityUrl = BUNGIE_API.MANIFEST.ACTIVITY + hash.split('-')[hash.split('-').length-1];
