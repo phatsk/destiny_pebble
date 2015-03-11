@@ -50,7 +50,7 @@ function updateActivityMenu(activity, item)
 
 	if(item)
 	{
-		console.log('Updating menu for ' + activity);
+		logUI('Updating menu for ' + activity);
 
 		for(key in item)
 		{
