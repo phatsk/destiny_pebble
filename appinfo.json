@@ -9,7 +9,6 @@
     "resources": {
         "media": [
 			{
-                "menuIcon": true,
 				"file": "images/node_strike_icon_dithered_3.png",
 				"name": "NODE_STRIKE_FEATURED",
 				"type": "png"

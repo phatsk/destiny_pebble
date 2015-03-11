@@ -169,7 +169,7 @@ function updateActivities()
 
 	getLocalData(nightfallHash, function(data){
 		var item = {
-			title: data.Response.data.activity.activityName,
+			title: 'Test', //data.Response.data.activity.activityName,
 			icon: 'NODE_STRIKE_FEATURED' 
 		};
 
