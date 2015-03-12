@@ -95,7 +95,6 @@ MainMenu.on('select', function(event){
 	}
 
 	DetailWindow.show();
-	MainMenu.hide();
 });
 
 var waitCard = new ui.Card({
