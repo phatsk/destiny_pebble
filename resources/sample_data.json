@@ -958,43 +958,236 @@
 }]
 }
 
-// http://www.bungie.net/Platform/Destiny/SearchDestinyPlayer/1/phatskat
 {"Response":[{"iconPath":"/img/theme/destiny/icons/icon_xbl.png","membershipType":1,"membershipId":"4611686018435607144","displayName":"phatskat"}],"ErrorCode":1,"ThrottleSeconds":0,"ErrorStatus":"Success","Message":"Ok","MessageData":{}}
 
-// http://www.bungie.net/platform/Destiny/Manifest/Activity/3468792475/
 {
     "Response": {
         "data": {
-            "requestedId": 3468792475,
+            "requestedId": 2593008450,
             "activity": {
-                "activityHash": 3468792475,
-                "activityName": "Weekly Nightfall Strike",
-                "activityDescription": "The Darkness gathers around Sepiks Prime as it absorbs the essence of everything the Fallen can steal.",
-                "icon": "/img/theme/destiny/icons/node_strike_nightfall.png",
+                "activityHash": 2593008450,
+                "activityName": "Eternal War",
+                "activityDescription": "The Future War Cult seeks champions who can face the inexorable future.\n\nAll-out team warfare. Destroy the enemy.",
+                "icon": "/common/destiny_content/icons/icon_pvp_d0a189071d8eb5d009f4252bef78b551.png",
                 "releaseIcon": "/img/misc/missing_icon.png",
                 "releaseTime": 0,
-                "activityLevel": 30,
-                "completionFlagHash": 4185808065,
-                "activityPower": 120,
+                "activityLevel": 0,
+                "completionFlagHash": 692354156,
+                "activityPower": 0,
                 "minParty": 1,
-                "maxParty": 3,
-                "maxPlayers": 3,
-                "destinationHash": 3393213630,
-                "placeHash": 3747705955,
-                "activityTypeHash": 575572995,
-                "tier": 1,
-                "pgcrImage": "/img/theme/destiny/bgs/pgcrs/patrol_cosmo.jpg",
+                "maxParty": 6,
+                "maxPlayers": 12,
+                "destinationHash": 2777041980,
+                "placeHash": 4088006058,
+                "activityTypeHash": 3614615911,
+                "tier": -1,
+                "pgcrImage": "/img/theme/destiny/bgs/pgcrs/crucible_firstlight.jpg",
                 "rewards": [
                     {
                         "rewardItems": [
                             {
-                                "itemHash": 3747303650,
+                                "itemHash": 1082476426,
+                                "value": 0
+                            }
+                        ]
+                    },
+                    {
+                        "rewardItems": [
+                            {
+                                "itemHash": 523605914,
+                                "value": 0
+                            }
+                        ]
+                    },
+                    {
+                        "rewardItems": [
+                            {
+                                "itemHash": 2873479814,
+                                "value": 0
+                            }
+                        ]
+                    },
+                    {
+                        "rewardItems": [
+                            {
+                                "itemHash": 1315532320,
                                 "value": 0
                             }
                         ]
                     }
                 ]
             }
+        },
+        "definitions": {
+            "destinations": {
+                "2777041980": {
+                    "destinationHash": 2777041980,
+                    "destinationName": "The Crucible",
+                    "destinationDescription": "Hone your skills and win glory in battle against other Guardians.",
+                    "icon": "/common/destiny_content/icons/9a838566008cf8a8298e286d1162b185.jpg",
+                    "placeHash": 4088006058,
+                    "destinationIdentifier": "DESTINATION_CRUCIBLE"
+                }
+            },
+            "places": {
+                "4088006058": {
+                    "placeHash": 4088006058,
+                    "placeName": "The Crucible",
+                    "placeDescription": "Hone your skills and win glory in battle against other Guardians.",
+                    "icon": "/img/misc/missing_icon.png"
+                }
+            },
+            "activityTypes": {
+                "3614615911": {
+                    "activityTypeHash": 3614615911,
+                    "identifier": "ACTIVITY_TYPE_PVP_TEAM",
+                    "activityTypeName": "Clash",
+                    "activityTypeDescription": "Face your fellow Guardians in open combat. Prove your worth, and you will be rewarded.",
+                    "icon": "/common/destiny_content/icons/icon_pvp_d0a189071d8eb5d009f4252bef78b551.png",
+                    "activeBackgroundVirtualPath": "/img/destiny_content/ActivityTypeBackground/Active/crucible.png",
+                    "completedBackgroundVirtualPath": "/img/destiny_content/ActivityTypeBackground/Completed/crucible.png",
+                    "hiddenOverrideVirtualPath": "/img/destiny_content/ActivityTypeBackground/Hidden/crucible.png",
+                    "tooltipBackgroundVirtualPath": "/img/destiny_content/ActivityTypeBackground/Tooltip/crucible.png",
+                    "enlargedActiveBackgroundVirtualPath": "/img/destiny_content/ActivityTypeBackground/Active/crucible.png",
+                    "enlargedCompletedBackgroundVirtualPath": "/img/destiny_content/ActivityTypeBackground/Completed/crucible.png",
+                    "enlargedHiddenOverrideVirtualPath": "/img/destiny_content/ActivityTypeBackground/Hidden/crucible.png",
+                    "enlargedTooltipBackgroundVirtualPath": "/img/destiny_content/ActivityTypeBackground/Tooltip/crucible.png",
+                    "order": 2,
+                    "statGroup": "team",
+                    "friendlyUrlId": "clash"
+                }
+            },
+            "items": {
+                "523605914": {
+                    "itemHash": 523605914,
+                    "itemName": "Crucible Marks",
+                    "icon": "/common/destiny_content/icons/aca343b391a1406c1aefd2ba917d94b8.png",
+                    "secondaryIcon": "/img/misc/missing_icon.png",
+                    "actionName": "###NULL STRING REFERENCE###",
+                    "actionDescription": "###NULL STRING REFERENCE###",
+                    "tierTypeName": "Common",
+                    "tierType": 2,
+                    "bucketTypeHash": 3621873013,
+                    "baseStats": [],
+                    "perkHashes": [],
+                    "specialItemType": 0,
+                    "talentGridHash": 0,
+                    "hasGeometry": false,
+                    "statGroupHash": 0,
+                    "itemLevels": [],
+                    "qualityLevel": 0,
+                    "rewardItemHash": 0,
+                    "values": {},
+                    "itemType": 0,
+                    "itemSubType": 0,
+                    "classType": 3,
+                    "nonTransferrable": true,
+                    "exclusive": 0
+                },
+                "1082476426": {
+                    "itemHash": 1082476426,
+                    "itemName": "Crucible Gear",
+                    "icon": "/common/destiny_content/icons/45bed35a16cdcd517b95c14ad75c5c6e.jpg",
+                    "secondaryIcon": "/img/misc/missing_icon.png",
+                    "actionName": "###NULL STRING REFERENCE###",
+                    "actionDescription": "###NULL STRING REFERENCE###",
+                    "tierTypeName": "Legendary",
+                    "tierType": 5,
+                    "bucketTypeHash": 3621873013,
+                    "baseStats": [],
+                    "perkHashes": [],
+                    "specialItemType": 0,
+                    "talentGridHash": 0,
+                    "hasGeometry": false,
+                    "statGroupHash": 0,
+                    "itemLevels": [],
+                    "qualityLevel": 0,
+                    "rewardItemHash": 0,
+                    "values": {},
+                    "itemType": 0,
+                    "itemSubType": 0,
+                    "classType": 3,
+                    "nonTransferrable": true,
+                    "exclusive": 0
+                },
+                "1315532320": {
+                    "itemHash": 1315532320,
+                    "itemName": "XP Bonus",
+                    "icon": "/common/destiny_content/icons/03d9913a98ecfbf0c7ea787730caf71c.png",
+                    "secondaryIcon": "/img/misc/missing_icon.png",
+                    "actionName": "###NULL STRING REFERENCE###",
+                    "actionDescription": "###NULL STRING REFERENCE###",
+                    "tierTypeName": "Common",
+                    "tierType": 2,
+                    "bucketTypeHash": 3621873013,
+                    "baseStats": [],
+                    "perkHashes": [],
+                    "specialItemType": 0,
+                    "talentGridHash": 0,
+                    "hasGeometry": false,
+                    "statGroupHash": 0,
+                    "itemLevels": [],
+                    "qualityLevel": 0,
+                    "rewardItemHash": 0,
+                    "values": {},
+                    "itemType": 0,
+                    "itemSubType": 0,
+                    "classType": 3,
+                    "nonTransferrable": true,
+                    "exclusive": 0
+                },
+                "2873479814": {
+                    "itemHash": 2873479814,
+                    "itemName": "Crucible Reputation",
+                    "icon": "/common/destiny_content/icons/1f0cb50a70108f6a03a6d9259f56403f.jpg",
+                    "secondaryIcon": "/img/misc/missing_icon.png",
+                    "actionName": "###NULL STRING REFERENCE###",
+                    "actionDescription": "###NULL STRING REFERENCE###",
+                    "tierTypeName": "Common",
+                    "tierType": 2,
+                    "bucketTypeHash": 3621873013,
+                    "baseStats": [],
+                    "perkHashes": [],
+                    "specialItemType": 0,
+                    "talentGridHash": 0,
+                    "hasGeometry": false,
+                    "statGroupHash": 0,
+                    "itemLevels": [],
+                    "qualityLevel": 0,
+                    "rewardItemHash": 0,
+                    "values": {},
+                    "itemType": 0,
+                    "itemSubType": 0,
+                    "classType": 3,
+                    "nonTransferrable": true,
+                    "exclusive": 0
+                }
+            },
+            "buckets": {
+                "3621873013": {
+                    "bucketHash": 3621873013,
+                    "scope": 0,
+                    "category": 0,
+                    "bucketOrder": 0,
+                    "bucketIdentifier": "BUCKET_HIDDEN",
+                    "itemCount": 1,
+                    "location": 1,
+                    "hasTransferDestination": false
+                }
+            },
+            "perks": {},
+            "talentGrids": {},
+            "statGroups": {},
+            "progressionMappings": {},
+            "stats": {},
+            "sources": {},
+            "progressions": {},
+            "materialRequirements": {},
+            "factions": {},
+            "events": {},
+            "vendorSummaries": {},
+            "activityBundles": {},
+            "books": {}
         }
     },
     "ErrorCode": 1,

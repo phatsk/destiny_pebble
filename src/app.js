@@ -1,5 +1,6 @@
 // Set to true to always pull fresh data - use sparingly!
 var CACHE_INVALIDATE = false;
+var ENABLE_LOGGING = true;
 var BUNGIE_API = {
 	ADVISORS: 'http://www.bungie.net/Platform/Destiny/Advisors/?definitions=true',
     MANIFEST: {
@@ -340,6 +341,6 @@ function logRemote(message)
 
 function logLocal(message)
 {
-	return log('>>', message);
+	return ENABLE_LOGGING && log('>>', message);
 }
 

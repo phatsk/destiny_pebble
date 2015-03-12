@@ -9,7 +9,7 @@
     "resources": {
         "media": [
             {
-                "file": "images/menu_icon.png",
+                "file": "images/destin10.png",
                 "menuIcon": true,
                 "name": "IMAGE_MENU_ICON",
                 "type": "png"
@@ -33,7 +33,12 @@
                 "file": "images/node_strike_icon_dithered_3.png",
                 "name": "IMAGES_NODE_STRIKE_ICON_DITHERED_3_PNG",
                 "type": "png"
-            }
+            },
+			{
+				"file": "images/icon_pvp_d0a189071d8eb5d009f4252bef78b551.png",
+				"name": "IMAGES_PVP_SKIRMISH",
+				"type": "png"
+			}
         ]
     },
     "shortName": "Destiny",
