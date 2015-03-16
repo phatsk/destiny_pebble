@@ -344,3 +344,7 @@ function logLocal(message)
 	return ENABLE_LOGGING && log('>>', message);
 }
 
+// configuration stuffs
+Pebble.addEventListener('showConfiguration', function(e){
+	Pebble.openURL('http://phatsk.github.io/destiny_pebble/');
+});
