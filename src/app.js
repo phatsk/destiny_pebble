@@ -5,7 +5,7 @@ var BUNGIE_API = {
 	ADVISORS: 'http://www.bungie.net/Platform/Destiny/Advisors/?definitions=true',
     MANIFEST: {
         ACTIVITY: 'http://www.bungie.net/platform/Destiny/Manifest/Activity/',
-		ACTIVITY_TYPE: 'http://www.bungie.net/platform/Destiny/Manifest/ActivityType/'	
+		ACTIVITY_TYPE: 'http://www.bungie.net/platform/Destiny/Manifest/ActivityType/'
     }
 };
 
@@ -106,7 +106,7 @@ var today = new Date();
 var activityData;
 
 // Check for local activity data
-try 
+try
 {
     activityData = localStorage.getItem('activityData');
 	activityData = JSON.parse(activityData);
@@ -121,7 +121,7 @@ try
 		{
 			throw "Weekly data is stale, pulling some fresh";
 		}
-		
+
         if((dailyreset = new Date(activityData.Response.data.dailyChapterResetDate)) && today > dailyreset)
 		{
 			throw "Daily data is stale, pulling some fresh";
@@ -148,9 +148,9 @@ if(!activityData || !activityData.Response.definitions || CACHE_INVALIDATE)
 		activityData = data;
 		localStorage.setItem('activityData', JSON.stringify(data));
 		ClearWait();
-		
+
 		logRemote('Got remote activity data: ' + JSON.stringify(data));
-		
+
 		updateActivities();
 	}, function(error){
 		ClearWait();
@@ -270,7 +270,7 @@ function getLocalData(hash, callback)
 
 	logInfo('Getting local data for hash: ' + hash);
 
-	try 
+	try
 	{
 		data = localStorage.getItem(hash);
 		data = JSON.parse(data);
@@ -279,7 +279,7 @@ function getLocalData(hash, callback)
 
 		if(!data || !data.Response.definitions)
 			throw 'No activity data for ' + hash + ', fetching fresh data';
-        
+
         if(CACHE_INVALIDATE)
             throw 'Manually flushing cache!';
 	}
@@ -298,7 +298,7 @@ function getLocalData(hash, callback)
 			ClearWait();
 
 			logRemote('Got remote activity data: ' + JSON.stringify(data));
-			
+
 			callback(data);
 		}, function(error){
 			ClearWait();
