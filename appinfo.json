@@ -9,7 +9,7 @@
     "resources": {
         "media": [{
 			"menuIcon": true,
-			"file": "images/destin10.png",
+			"file": "images/destiny.png",
 			"name": "IMAGE_MENU_ICON",
 			"type": "png"
 		},{
