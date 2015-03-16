@@ -348,3 +348,8 @@ function logLocal(message)
 Pebble.addEventListener('showConfiguration', function(e){
 	Pebble.openURL('http://phatsk.github.io/destiny_pebble/');
 });
+
+Pebble.addEventListener('webviewclosed', function(e){
+	var config = JSON.parse(decodeURIComponent(e.response));
+    console.log('Configuration window returned: ', JSON.stringify(config));
+});
