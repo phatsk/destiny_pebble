@@ -187,7 +187,7 @@ else
 
 var guardian_config = localStorage.getItem('guardian_config');
 
-if(guardian_config)
+if(guardian_config && !CACHE_INVALIDATE)
 {
 	guardian_config = JSON.parse(guardian_config);
 	logLocal('Found user config: ' + JSON.stringify(guardian_config));
