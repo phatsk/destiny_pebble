@@ -189,6 +189,7 @@ var guardian_config = localStorage.getItem('guardian_config');
 
 if(guardian_config)
 {
+	guardian_config = JSON.parse(guardian_config);
 	logLocal('Found user config: ' + JSON.stringify(guardian_config));
 
 	logInfo('Grabbing latest guardian stats');
@@ -407,6 +408,6 @@ Pebble.addEventListener('webviewclosed', function(e){
 
 	if(config)
 	{
-		localStorage.setItem('guardian_config', config);
+		localStorage.setItem('guardian_config', JSON.stringify(config));
 	}
 });
