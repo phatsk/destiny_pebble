@@ -164,6 +164,20 @@ else
 	updateActivities();
 }
 
+var guardian_config = localStorage.getItem('guardian_config');
+
+if(guardian_config && false)
+{
+	logLocal('Found user config: ' + JSON.stringify(guardian_config));
+}
+else
+{
+	MainMenu.section(1, {title: 'Guardian', items: [{
+		title: 'Error',
+		subtitle: 'Check app settings'
+	}]});
+}
+
 MainMenu.show();
 
 function AjaxWait()
@@ -352,4 +366,9 @@ Pebble.addEventListener('showConfiguration', function(e){
 Pebble.addEventListener('webviewclosed', function(e){
 	var config = JSON.parse(decodeURIComponent(e.response));
     console.log('Configuration window returned: ', JSON.stringify(config));
+
+	if(config)
+	{
+		localStorage.setItem('guardian_config', config);
+	}
 });
