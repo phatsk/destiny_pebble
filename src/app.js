@@ -6,7 +6,22 @@ var BUNGIE_API = {
     MANIFEST: {
         ACTIVITY: 'http://www.bungie.net/platform/Destiny/Manifest/Activity/',
 		ACTIVITY_TYPE: 'http://www.bungie.net/platform/Destiny/Manifest/ActivityType/'
-    }
+    },
+	GUARDIAN_DATA: 'http://www.bungie.net/Platform/Destiny/{type}/Account/{id}',
+	get: function(what, config) {
+		var r;
+
+		for(var key in config)
+		{
+			if(config.hasOwnProperty(key))
+			{
+				r = new RegExp('{' + key + '}', 'g');
+				what = what.replace(r, config[key]);
+			}
+		}
+
+		return what;
+	}
 };
 
 var ui = require('ui');
@@ -75,11 +90,15 @@ function updateActivityMenu(activity, item)
 	}
 
 	logUI('New menu sections: ' + JSON.stringify(sections));
-	MainMenu.section(0, {title: 'Activity', items: sections});
+	MainMenu.section(0, {title: 'Activities', items: sections});
 }
 
 var MainMenu = new ui.Menu({
-	sections: []
+	sections: [{
+		title: 'Activities'
+	},{
+		title: 'Guardian'
+	}]
 });
 
 MainMenu.on('select', function(event){
@@ -166,9 +185,21 @@ else
 
 var guardian_config = localStorage.getItem('guardian_config');
 
-if(guardian_config && false)
+if(guardian_config)
 {
 	logLocal('Found user config: ' + JSON.stringify(guardian_config));
+
+	logInfo('Grabbing latest guardian stats');
+
+	ajax({
+		url: BUNGIE_API.get('GUARDIAN_DATA', {type: guardian_config.platform, id: guardian_config.guardianId }),
+		type: 'json'
+	}, function(data){
+		logRemote('Testing URL: ' + BUNGIE_API.get('GUARDIAN_DATA', {type: guardian_config.platform, id: guardian_config.guardianId }));
+		logJSON(data);	
+	}, function(error){
+		logError(error);
+	});
 }
 else
 {
@@ -351,6 +382,11 @@ function logInfo(message)
 function logRemote(message)
 {
 	return log('<<', message);
+}
+
+function logJSON(message)
+{
+	return log('{}', JSON.stringify(message));
 }
 
 function logLocal(message)
