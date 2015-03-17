@@ -11,6 +11,8 @@ var BUNGIE_API = {
 	get: function(what, config) {
 		var r;
 
+		what = BUNGIE_API[what];
+
 		for(var key in config)
 		{
 			if(config.hasOwnProperty(key))
