@@ -346,7 +346,7 @@ function logLocal(message)
 
 // configuration stuffs
 Pebble.addEventListener('showConfiguration', function(e){
-	Pebble.openURL('http://phatsk.github.io/destiny_pebble/');
+	Pebble.openURL('http://destiny-phatsk.rhcloud.com/config.php');
 });
 
 Pebble.addEventListener('webviewclosed', function(e){
