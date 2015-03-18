@@ -50,6 +50,8 @@ var MainMenu = new ui.Menu({
 	}]
 });
 
+activities.init(MainMenu);
+
 MainMenu.on('select', function(event){
 	var sections = event.item.userdata.getDetails();
 
