@@ -68,20 +68,20 @@ this.exports = (function(){
 				var chars = [];
 				var guardian = data.Respponse.data;
 
-				for(var i = guardian.currencies.length; i--;)
+				for(var i = guardian.inventory.currencies.length; i--;)
 				{
-					if(BUNGIE_API.HASH[guardian.currencies[i].itemHash] == 'glimmer')
+					if(BUNGIE_API.HASH[guardian.inventory.currencies[i].itemHash] == 'glimmer')
 					{
 						chars.push({
 							title: 'Glimmer',
-							subtitle: guardian.currencies[i].value
+							subtitle: guardian.inventory.currencies[i].value
 						});
 					}
 				}
 
-				for(i = 0; i < data.Response.data.characters.length; i++)
+				for(i = 0; i < guardian.characters.length; i++)
 				{
-					char = data.Response.data.characters[i].characterBase;
+					char = guardian.characters[i].characterBase;
 					chars.push({
 						title: char.powerLevel + ' // ' + BUNGIE_API.HASH[char.classHash].capitalize(),
 						subtitle: BUNGIE_API.HASH[char.raceHash].capitalize() + ' ' + BUNGIE_API.HASH[char.genderHash].capitalize()
