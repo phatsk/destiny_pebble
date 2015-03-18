@@ -1,38 +1,36 @@
-function log(prefix, message)
-{
-	return console.log('[' + prefix + '] ' + message);
-}
-
-function logUI(message)
-{
-	return log('UI', message);
-}
-
-function logError(message)
-{
-	return log('EE', message);
-}
-
-function logInfo(message)
-{
-	return log('II', message);
-}
-
-function logRemote(message)
-{
-	return log('<<', message);
-}
-
-function logJSON(message)
-{
-	return log('{}', JSON.stringify(message));
-}
-
-function logLocal(message)
-{
-	return ENABLE_LOGGING && log('>>', message);
-}
+var dp_util = {
+	log: function(prefix, message)
+	{
+		return console.log('[' + prefix + '] ' + message);
+	},
+	logUI: function(message)
+	{
+		return log('UI', message);
+	},
+	logError: function(message)
+	{
+		return log('EE', message);
+	},
+	logInfo: function(message)
+	{
+		return log('II', message);
+	},
+	logRemote: function(message)
+	{
+		return log('<<', message);
+	},
+	logJSON: function(message)
+	{
+		return log('{}', JSON.stringify(message));
+	},
+	logLocal: function(message)
+	{
+		return ENABLE_LOGGING && log('>>', message);
+	}
+};
 
 String.prototype.capitalize = String.prototype.capitalize || function() {
 	return this.charAt(0).toUpperCase() + this.substring(1);
 };
+
+this.exports = dp_util;

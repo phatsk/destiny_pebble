@@ -52,7 +52,7 @@ function updateActivityMenu(activity, item)
 
 	if(item)
 	{
-		logUI('Updating menu for ' + activity);
+		dp_util.logUI('Updating menu for ' + activity);
 
 		for(key in item)
 		{
@@ -60,7 +60,7 @@ function updateActivityMenu(activity, item)
 		}
 	}
 
-	logUI('Updating activity menu: ' + JSON.stringify(MenuActivities));
+	dp_util.logUI('Updating activity menu: ' + JSON.stringify(MenuActivities));
 
 	for(key in MenuActivities)
 	{
@@ -70,7 +70,7 @@ function updateActivityMenu(activity, item)
 		}
 	}
 
-	logUI('New menu sections: ' + JSON.stringify(sections));
+	dp_util.logUI('New menu sections: ' + JSON.stringify(sections));
 	MainMenu.section(0, {title: 'Activities', items: sections});
 }
 
@@ -85,7 +85,7 @@ var MainMenu = new ui.Menu({
 MainMenu.on('select', function(event){
 	var sections = event.item.userdata.getDetails();
 
-	logUI('Showing details for ' + event.item.userdata.key);
+	dp_util.logUI('Showing details for ' + event.item.userdata.key);
 
 	for(var key in sections)
 	{
@@ -129,7 +129,7 @@ try
 	}
 }
 catch(e) {
-	logError('Tried (unsuccessfully) to grab local data: ' + e);
+	dp_util.logError('Tried (unsuccessfully) to grab local data: ' + e);
 	activityData = false;
 }
 
@@ -149,18 +149,18 @@ if(!activityData || !activityData.Response.definitions || CACHE_INVALIDATE)
 		localStorage.setItem('activityData', JSON.stringify(data));
 		ClearWait();
 
-		logRemote('Got remote activity data: ' + JSON.stringify(data));
+		dp_util.logRemote('Got remote activity data: ' + JSON.stringify(data));
 
 		updateActivities();
 	}, function(error){
 		ClearWait();
 
-		logError('Could not get response from ' +  BUNGIE_API.ADVISORS + ': ' + error);
+		dp_util.logError('Could not get response from ' +  BUNGIE_API.ADVISORS + ': ' + error);
 	});
 }
 else
 {
-	logLocal('Got locally stored activity data: ' + JSON.stringify(activityData.Response.data.nightfallActivityHash));
+	dp_util.logLocal('Got locally stored activity data: ' + JSON.stringify(activityData.Response.data.nightfallActivityHash));
 	updateActivities();
 }
 
@@ -169,18 +169,18 @@ var guardian_config = localStorage.getItem('guardian_config');
 if(guardian_config && !CACHE_INVALIDATE)
 {
 	guardian_config = JSON.parse(guardian_config);
-	logLocal('Found user config: ' + JSON.stringify(guardian_config));
+	dp_util.logLocal('Found user config: ' + JSON.stringify(guardian_config));
 
-	logInfo('Grabbing latest guardian stats');
+	dp_util.logInfo('Grabbing latest guardian stats');
 
 	ajax({
 		url: BUNGIE_API.get('GUARDIAN_DATA', {type: guardian_config.platform, id: guardian_config.guardianId }),
 		type: 'json'
 	}, function(data){
-		logRemote('Testing URL: ' + BUNGIE_API.get('GUARDIAN_DATA', {type: guardian_config.platform, id: guardian_config.guardianId }));
-		logJSON(data);	
+		dp_util.logRemote('Testing URL: ' + BUNGIE_API.get('GUARDIAN_DATA', {type: guardian_config.platform, id: guardian_config.guardianId }));
+		dp_util.logJSON(data);	
 	}, function(error){
-		logError(error);
+		dp_util.logError(error);
 	});
 }
 else
@@ -295,14 +295,14 @@ function getLocalData(hash, callback)
 	var data;
 	callback = callback || function() {};
 
-	logInfo('Getting local data for hash: ' + hash);
+	dp_util.logInfo('Getting local data for hash: ' + hash);
 
 	try
 	{
 		data = localStorage.getItem(hash);
 		data = JSON.parse(data);
 
-		logLocal('Data gathered from localStorage for hash `' + hash + '`: ' + JSON.stringify(data));
+		dp_util.logLocal('Data gathered from localStorage for hash `' + hash + '`: ' + JSON.stringify(data));
 
 		if(!data || !data.Response.definitions)
 			throw 'No activity data for ' + hash + ', fetching fresh data';
@@ -312,8 +312,8 @@ function getLocalData(hash, callback)
 	}
 	catch(e) {
 		var activityUrl = BUNGIE_API.MANIFEST.ACTIVITY + hash.split('-')[hash.split('-').length-1];
-		logError('Tried (unsuccessfully) to grab local data for ' + hash + ': ' + e);
-		logInfo('Pulling data for ' + hash + ' from: ' + activityUrl);
+		dp_util.logError('Tried (unsuccessfully) to grab local data for ' + hash + ': ' + e);
+		dp_util.logInfo('Pulling data for ' + hash + ' from: ' + activityUrl);
 
 		AjaxWait();
 
@@ -324,19 +324,19 @@ function getLocalData(hash, callback)
 			localStorage.setItem(hash, JSON.stringify(data));
 			ClearWait();
 
-			logRemote('Got remote activity data: ' + JSON.stringify(data));
+			dp_util.logRemote('Got remote activity data: ' + JSON.stringify(data));
 
 			callback(data);
 		}, function(error){
 			ClearWait();
 
-			logError('Could not get response from ' +  activityUrl + ': ' + error);
+			dp_util.logError('Could not get response from ' +  activityUrl + ': ' + error);
 		});
 	}
 
 	if(data)
 	{
-		logLocal('Found local data for hash ' + hash + ', executing callback');
+		dp_util.logLocal('Found local data for hash ' + hash + ', executing callback');
 		callback(data);
 	}
 }
@@ -348,7 +348,7 @@ Pebble.addEventListener('showConfiguration', function(e){
 
 Pebble.addEventListener('webviewclosed', function(e){
 	var config = JSON.parse(decodeURIComponent(e.response));
-    console.log('Configuration window returned: ', JSON.stringify(config));
+    dp_util.logLocal('Configuration window returned: ', JSON.stringify(config));
 
 	if(config)
 	{
