@@ -1,5 +1,5 @@
 var BUNGIE_API = require('bungie_api');
-require('dp_util');
+var dp_util = require('dp_util');
 
 // Set to true to always pull fresh data - use sparingly!
 var CACHE_INVALIDATE = false;
