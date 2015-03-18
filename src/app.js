@@ -2,6 +2,7 @@
 var BUNGIE_API = require('bungie_api');
 var dp_util = require('dp_util');
 var activities = require('activities');
+var guardian = require('guardian');
 
 var ui = require('ui');
 var ajax = require('ajax');
@@ -11,7 +12,18 @@ var DetailWindow = new ui.Card({
 	scrollable: true
 });
 
-var MenuActivities = {
+var MainMenu = new ui.Menu({
+	sections: [{
+		title: 'Activities',
+		items: {
+			title: 'Loading...'
+		}
+	},{
+		title: 'Guardian'
+	}]
+});
+
+activities.init(MainMenu, {
 	nightfall: {
 		title: 'Weekly Nightfall',
 		subtitle: 'Loading...',
@@ -40,17 +52,9 @@ var MenuActivities = {
 			key: 'CRUCIBLE'
 		}
 	}
-};
-
-var MainMenu = new ui.Menu({
-	sections: [{
-		title: 'Activities'
-	},{
-		title: 'Guardian'
-	}]
 });
 
-activities.init(MainMenu, MenuActivities);
+guardian.init(MainMenu);
 
 MainMenu.on('select', function(event){
 	var sections = event.item.userdata.getDetails();
@@ -73,34 +77,6 @@ var waitCard = new ui.Card({
 });
 
 var activityData;
-
-// Check for local activity data
-var guardian_config = localStorage.getItem('guardian_config');
-
-if(guardian_config && !dp_util.get('CACHE_INVALIDATE'))
-{
-	guardian_config = JSON.parse(guardian_config);
-	dp_util.logLocal('Found user config: ' + JSON.stringify(guardian_config));
-
-	dp_util.logInfo('Grabbing latest guardian stats');
-
-	ajax({
-		url: BUNGIE_API.get('GUARDIAN_DATA', {type: guardian_config.platform, id: guardian_config.guardianId }),
-		type: 'json'
-	}, function(data){
-		dp_util.logRemote('Testing URL: ' + BUNGIE_API.get('GUARDIAN_DATA', {type: guardian_config.platform, id: guardian_config.guardianId }));
-		dp_util.logJSON(data);	
-	}, function(error){
-		dp_util.logError(error);
-	});
-}
-else
-{
-	MainMenu.section(1, {title: 'Guardian', items: [{
-		title: 'Error',
-		subtitle: 'Check app settings'
-	}]});
-}
 
 MainMenu.show();
 
