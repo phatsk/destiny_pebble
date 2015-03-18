@@ -64,10 +64,17 @@ this.exports = (function(){
 
 				dp_util.logInfo('Got guardian data');
 
-				menu.setction(1, {
+				menu.section(1, {
 					title: 'Loading info',
 					items: [{
-						title: 'Please wait'
+						title: '31 Hunter',
+						subtitle: 'Exo Female'
+					},{
+						title: '31 Hunter',
+						subtitle: 'Exo Female'
+					},{
+						title: '31 Hunter',
+						subtitle: 'Exo Female'
 					}]
 				});
 			});

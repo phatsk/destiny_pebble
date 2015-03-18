@@ -44,7 +44,13 @@ var dp_util = (function(){
 })();
 
 String.prototype.capitalize = String.prototype.capitalize || function() {
-	return this.charAt(0).toUpperCase() + this.substring(1);
+	var s = this.split(' ');
+	for(var i = s.length; i--;)
+	{
+		s[i] = s[i].charAt(0).toUpperCase() + s[i].substring(1);
+	}
+
+	return s.join(' ');
 };
 
 this.exports = dp_util;
