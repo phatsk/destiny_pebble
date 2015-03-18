@@ -66,7 +66,7 @@ this.exports = (function(){
 						title: 'Please wait'
 					}]
 				});
-			});	
+			});
 		}
 	};
 })();
