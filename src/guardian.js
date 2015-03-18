@@ -66,8 +66,20 @@ this.exports = (function(){
 
 				var char;
 				var chars = [];
+				var guardian = data.Respponse.data;
 
-				for(var i = 0; i < data.Response.data.characters.length; i++)
+				for(var i = guardian.currencies.length; i--;)
+				{
+					if(BUNGIE_API.HASH[guardian.currencies[i].itemHash] == 'glimmer')
+					{
+						chars.push({
+							title: 'Glimmer',
+							subtitle: guardian.currencies[i].value
+						});
+					}
+				}
+
+				for(i = 0; i < data.Response.data.characters.length; i++)
 				{
 					char = data.Response.data.characters[i].characterBase;
 					chars.push({
@@ -77,7 +89,7 @@ this.exports = (function(){
 				}
 
 				menu.section(1, {
-					title: 'Loading info',
+					title: 'Guardian',
 					items: chars 
 				});
 			});
