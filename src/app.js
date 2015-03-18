@@ -1,30 +1,9 @@
+var BUNGIE_API = require('bungie_api');
+require('dp_util');
+
 // Set to true to always pull fresh data - use sparingly!
 var CACHE_INVALIDATE = false;
 var ENABLE_LOGGING = true;
-var BUNGIE_API = {
-	ADVISORS: 'http://www.bungie.net/Platform/Destiny/Advisors/?definitions=true',
-    MANIFEST: {
-        ACTIVITY: 'http://www.bungie.net/platform/Destiny/Manifest/Activity/',
-		ACTIVITY_TYPE: 'http://www.bungie.net/platform/Destiny/Manifest/ActivityType/'
-    },
-	GUARDIAN_DATA: 'http://www.bungie.net/Platform/Destiny/{type}/Account/{id}',
-	get: function(what, config) {
-		var r;
-
-		what = BUNGIE_API[what];
-
-		for(var key in config)
-		{
-			if(config.hasOwnProperty(key))
-			{
-				r = new RegExp('{' + key + '}', 'g');
-				what = what.replace(r, config[key]);
-			}
-		}
-
-		return what;
-	}
-};
 
 var ui = require('ui');
 var ajax = require('ajax');
@@ -360,41 +339,6 @@ function getLocalData(hash, callback)
 		logLocal('Found local data for hash ' + hash + ', executing callback');
 		callback(data);
 	}
-}
-
-function log(prefix, message)
-{
-	return console.log('[' + prefix + '] ' + message);
-}
-
-function logUI(message)
-{
-	return log('UI', message);
-}
-
-function logError(message)
-{
-	return log('EE', message);
-}
-
-function logInfo(message)
-{
-	return log('II', message);
-}
-
-function logRemote(message)
-{
-	return log('<<', message);
-}
-
-function logJSON(message)
-{
-	return log('{}', JSON.stringify(message));
-}
-
-function logLocal(message)
-{
-	return ENABLE_LOGGING && log('>>', message);
 }
 
 // configuration stuffs
