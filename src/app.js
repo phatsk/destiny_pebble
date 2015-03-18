@@ -1,9 +1,10 @@
-var BUNGIE_API = require('bungie_api');
-var dp_util = require('dp_util');
-
 // Set to true to always pull fresh data - use sparingly!
 var CACHE_INVALIDATE = false;
 var ENABLE_LOGGING = true;
+
+var BUNGIE_API = require('bungie_api');
+var dp_util = require('dp_util');
+
 
 var ui = require('ui');
 var ajax = require('ajax');
