@@ -1,7 +1,7 @@
 // Set to true to always pull fresh data - use sparingly!
 var BUNGIE_API = require('bungie_api');
 var dp_util = require('dp_util');
-var activites = require('activities');
+var activities = require('activities');
 
 var ui = require('ui');
 var ajax = require('ajax');
