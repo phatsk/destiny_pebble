@@ -1,4 +1,9 @@
 var dp_util = (function(){
+	var config = {
+		CACHE_INVALIDATE: false,
+		ENABLE_LOGGING: true
+	};
+
 	function log(prefix, message)
 	{
 		return console.log('[' + prefix + '] ' + message);
@@ -27,7 +32,13 @@ var dp_util = (function(){
 		},
 		logLocal: function(message)
 		{
-			return ENABLE_LOGGING && log('>>', message);
+			return dp_util.get('ENABLE_LOGGING') && log('>>', message);
+		},
+		get: function(what) {
+			return config[what] || null;
+		},
+		set: function(what, value) {
+			return config[what] ? (config[what] = value) : false;
 		}
 	};
 })();

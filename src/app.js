@@ -1,10 +1,6 @@
 // Set to true to always pull fresh data - use sparingly!
-var CACHE_INVALIDATE = false;
-var ENABLE_LOGGING = true;
-
 var BUNGIE_API = require('bungie_api');
 var dp_util = require('dp_util');
-
 
 var ui = require('ui');
 var ajax = require('ajax');
@@ -138,7 +134,7 @@ catch(e) {
  * We didn't get any valid activityData so let's pull
  * fresh data from Bungie
  */
-if(!activityData || !activityData.Response.definitions || CACHE_INVALIDATE)
+if(!activityData || !activityData.Response.definitions || dp_util.get('CACHE_INVALIDATE'))
 {
 	AjaxWait(); // AJAX Waiter
 
@@ -167,7 +163,7 @@ else
 
 var guardian_config = localStorage.getItem('guardian_config');
 
-if(guardian_config && !CACHE_INVALIDATE)
+if(guardian_config && !dp_util.get('CACHE_INVALIDATE'))
 {
 	guardian_config = JSON.parse(guardian_config);
 	dp_util.logLocal('Found user config: ' + JSON.stringify(guardian_config));
@@ -308,7 +304,7 @@ function getLocalData(hash, callback)
 		if(!data || !data.Response.definitions)
 			throw 'No activity data for ' + hash + ', fetching fresh data';
 
-        if(CACHE_INVALIDATE)
+        if(dp_util.get('CACHE_INVALIDATE'))
             throw 'Manually flushing cache!';
 	}
 	catch(e) {
