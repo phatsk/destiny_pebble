@@ -186,17 +186,17 @@ var activites = (function(){
 
 			for(key in item)
 			{
-				MenuActivities[activity][key] = item[key];
+				menuConfig[activity][key] = item[key];
 			}
 		}
 
-		dp_util.logUI('Updating activity menu: ' + JSON.stringify(MenuActivities));
+		dp_util.logUI('Updating activity menu: ' + JSON.stringify(menuConfig));
 
-		for(key in MenuActivities)
+		for(key in menuConfig)
 		{
-			if(MenuActivities.hasOwnProperty(key))
+			if(menuConfig.hasOwnProperty(key))
 			{
-				sections.push(MenuActivities[key]);
+				sections.push(menuConfig[key]);
 			}
 		}
 
