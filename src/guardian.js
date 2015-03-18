@@ -40,6 +40,10 @@ this.exports = (function(){
 					callback(false, true);
 				});
 			}
+			else
+			{
+				callback(guardian_info);
+			}
 		}
 		else
 		{
