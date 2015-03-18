@@ -19,7 +19,7 @@ this.exports = (function(){
 
 			var today = new Date();
 
-			if(guardian_info.expires < today || dp_util.get('CACHE_INVALIDATE'))
+			if(!guardian_info.hasOwnProperty('expires') || guardian_info.expires < today || dp_util.get('CACHE_INVALIDATE'))
 			{
 				ajax({
 					url: BUNGIE_API.get('GUARDIAN_DATA', {type: guardian_config.platform, id: guardian_config.guardianId }),
