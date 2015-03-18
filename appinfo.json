@@ -7,24 +7,44 @@
     "longName": "Destiny Pebble",
     "projectType": "pebblejs",
     "resources": {
-        "media": [{
-			"menuIcon": true,
-			"file": "images/destiny.png",
-			"name": "IMAGE_MENU_ICON",
-			"type": "png"
-		},{
-			"file": "fonts/UbuntuMono-Regular.ttf",
-			"name": "MONO_FONT_14",
-			"type": "font"
-		},{
-			"file": "images/node_strike_icon_dithered_3.png",
-			"name": "IMAGE_NODE_STRIKE_ICON_DITHERED_3_PNG",
-			"type": "png"
-		},{
-			"file": "images/icon_pvp_d0a189071d8eb5d009f4252bef78b551.png",
-			"name": "IMAGES_PVP_SKIRMISH",
-			"type": "png"
-		}]
+        "media": [
+            {
+                "file": "images/menu_icon.png",
+                "menuIcon": true,
+                "name": "IMAGE_MENU_ICON",
+                "type": "png"
+            },
+            {
+                "file": "images/logo_splash.png",
+                "name": "IMAGE_LOGO_SPLASH",
+                "type": "png"
+            },
+            {
+                "file": "images/tile_splash.png",
+                "name": "IMAGE_TILE_SPLASH",
+                "type": "png"
+            },
+            {
+                "file": "fonts/UbuntuMono-Regular.ttf",
+                "name": "MONO_FONT_14",
+                "type": "font"
+            },
+            {
+                "file": "images/destiny.png",
+                "name": "IMAGES_DESTINY_PNG",
+                "type": "png"
+            },
+            {
+                "file": "images/icon_pvp_d0a189071d8eb5d009f4252bef78b551.png",
+                "name": "IMAGES_ICON_PVP_D0A189071D8EB5D009F4252BEF78B551_PNG",
+                "type": "png"
+            },
+            {
+                "file": "images/node_strike_icon_dithered_3.png",
+                "name": "IMAGES_NODE_STRIKE_ICON_DITHERED_3_PNG",
+                "type": "png"
+            }
+        ]
     },
     "shortName": "Destiny",
     "uuid": "fe9bca93-5535-ad6a-902f-098feaac9b29",
