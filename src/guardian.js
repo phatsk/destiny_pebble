@@ -67,7 +67,7 @@ this.exports = (function(){
 
 				var char;
 				var chars = [];
-				var guardian = data.Respponse.data;
+				var guardian = data.Response.data;
 
 				for(var i = guardian.inventory.currencies.length; i--;)
 				{
