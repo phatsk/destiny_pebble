@@ -1,4 +1,5 @@
 var activites = (function(){ 
+	var today = new Date();
 	var dp_util = require('dp_util');
 	var BUNGIE_API = require('bungie_api');
 	var ajax = require('ajax');
@@ -205,6 +206,7 @@ var activites = (function(){
 
 	return {
 		init: function(MainMenu) {
+			var ajax = require('ajax');
 			/**
 			* We didn't get any valid activityData so let's pull
 			* fresh data from Bungie
