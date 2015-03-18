@@ -1,7 +1,7 @@
-var dp_util = require('dp_util');
-var BUNGIE_API = require('bungie_api');
-
 var activites = (function(){ 
+	var dp_util = require('dp_util');
+	var BUNGIE_API = require('bungie_api');
+
 	var activityData = false;
 
 	/**
