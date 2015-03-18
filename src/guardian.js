@@ -42,6 +42,7 @@ this.exports = (function(){
 			}
 			else
 			{
+				dp_util.logInfo('Found local guardian data, expires on: ' + guardian_info.expires);
 				callback(guardian_info);
 			}
 		}
