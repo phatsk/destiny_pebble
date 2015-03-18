@@ -58,11 +58,13 @@ this.exports = (function(){
 					}]});
 				}
 
-				logInfo('Got guardian data');
+				dp_util.logInfo('Got guardian data');
 
 				menu.setction(1, {
 					title: 'Loading info',
-					subtitle: 'Please wait'
+					items: [{
+						title: 'Please wait'
+					}]
 				});
 			});	
 		}
