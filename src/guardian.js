@@ -64,18 +64,21 @@ this.exports = (function(){
 
 				dp_util.logInfo('Got guardian data');
 
+				var char;
+				var chars = [];
+
+				for(var i = 0; i < data.Response.data.characters.length; i++)
+				{
+					char = data.Response.data.characters[i].characterBase;
+					chars.push({
+						title: char.powerLevel + ' // ' + BUNGIE_API.HASH[char.classHash].capitalize(),
+						subtitle: BUNGIE_API.HASH[char.raceHash].capitalize() + ' ' + BUNGIE_API.HASH[char.genderHash].capitalize()
+					});
+				}
+
 				menu.section(1, {
 					title: 'Loading info',
-					items: [{
-						title: '31 Hunter',
-						subtitle: 'Exo Female'
-					},{
-						title: '31 Hunter',
-						subtitle: 'Exo Female'
-					},{
-						title: '31 Hunter',
-						subtitle: 'Exo Female'
-					}]
+					items: chars 
 				});
 			});
 		}

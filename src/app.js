@@ -26,7 +26,7 @@ var MainMenu = new ui.Menu({
 activities.init(MainMenu, {
 	nightfall: {
 		title: 'Weekly Nightfall',
-		icon: 'IMAGE_NODE_STRIKE_ICON_DITHERED_3_PNG',
+		icon: 'IMAGES_NODE_STRIKE',
 		subtitle: 'Loading...',
 		userdata: {
 			key: 'NIGHTFALL'
