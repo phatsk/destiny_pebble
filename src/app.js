@@ -50,7 +50,7 @@ var MainMenu = new ui.Menu({
 	}]
 });
 
-activities.init(MainMenu);
+activities.init(MainMenu, MenuActivities);
 
 MainMenu.on('select', function(event){
 	var sections = event.item.userdata.getDetails();
@@ -72,7 +72,6 @@ var waitCard = new ui.Card({
 	title: 'Loading...'
 });
 
-var today = new Date();
 var activityData;
 
 // Check for local activity data

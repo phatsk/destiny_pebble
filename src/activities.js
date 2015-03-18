@@ -39,7 +39,7 @@ var activites = (function(){
 		activityData = false;
 	}
 
-	function updateActivities(MainMenu)
+	function updateActivities(menu, menuConfig)
 	{
 		var nightfallHash = 'activity-nightfall-' + activityData.Response.data.nightfallActivityHash;
 		var weeklyHash = 'activity-weekly-' + activityData.Response.data.heroicStrikeHashes.join('-');
@@ -61,7 +61,7 @@ var activites = (function(){
 				}
 			};
 
-			updateActivityMenu('nightfall', item, MainMenu);
+			updateActivityMenu('nightfall', item, menu, menuConfig);
 		});
 
 		getLocalData(weeklyHash, function(data){
@@ -79,7 +79,7 @@ var activites = (function(){
 				}
 			};
 
-			updateActivityMenu('weekly', item, MainMenu);
+			updateActivityMenu('weekly', item, menu, menuConfig);
 		});
 
 		getLocalData(dailyHash, function(data){
@@ -98,7 +98,7 @@ var activites = (function(){
 				}
 			};
 
-			updateActivityMenu('daily', item, MainMenu);
+			updateActivityMenu('daily', item, menu, menuConfig);
 		});
 
 		getLocalData(crucibleHash, function(data){
@@ -120,7 +120,7 @@ var activites = (function(){
 				}
 			};
 
-			updateActivityMenu('crucible', item, MainMenu);
+			updateActivityMenu('crucible', item, menu, menuConfig);
 		});
 	}
 
@@ -175,7 +175,7 @@ var activites = (function(){
 		}
 	}
 
-	function updateActivityMenu(activity, item, MainMenu)
+	function updateActivityMenu(activity, item, menu, menuConfig)
 	{
 		var sections = [];
 		var key;
@@ -201,11 +201,11 @@ var activites = (function(){
 		}
 
 		dp_util.logUI('New menu sections: ' + JSON.stringify(sections));
-		MainMenu.section(0, {title: 'Activities', items: sections});
+		menu.section(0, {title: 'Activities', items: sections});
 	}
 
 	return {
-		init: function(MainMenu) {
+		init: function(menu, menuConfig) {
 			var ajax = require('ajax');
 			/**
 			* We didn't get any valid activityData so let's pull
@@ -222,7 +222,7 @@ var activites = (function(){
 
 					dp_util.logRemote('Got remote activity data: ' + JSON.stringify(data));
 
-					updateActivities(MainMenu);
+					updateActivities(menu, menuConfig);
 				}, function(error){
 
 					dp_util.logError('Could not get response from ' +  BUNGIE_API.ADVISORS + ': ' + error);
@@ -231,7 +231,7 @@ var activites = (function(){
 			else
 			{
 				dp_util.logLocal('Got locally stored activity data: ' + JSON.stringify(activityData.Response.data.nightfallActivityHash));
-				updateActivities(MainMenu);
+				updateActivities(menu, menuConfig);
 			}
 		}	
 	};
