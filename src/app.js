@@ -80,12 +80,6 @@ var activityData;
 
 MainMenu.show();
 
-function ClearWait()
-{
-	  MainMenu.show();
-	  waitCard.hide();
-}
-
 // configuration stuffs
 Pebble.addEventListener('showConfiguration', function(e){
 	  Pebble.openURL('http://destiny-phatsk.rhcloud.com/config.php');

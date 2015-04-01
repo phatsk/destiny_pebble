@@ -154,13 +154,11 @@ var activites = (function(){
 				        type: 'json'
 			      }, function(data){
 				        localStorage.setItem(hash, JSON.stringify(data));
-				        ClearWait();
 
 				        dp_util.logRemote('Got remote activity data: ' + JSON.stringify(data));
 
 				        callback(data);
 			      }, function(error){
-				        ClearWait();
 
 				        dp_util.logError('Could not get response from ' +  activityUrl + ': ' + error);
 			      });
