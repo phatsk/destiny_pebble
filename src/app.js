@@ -87,7 +87,7 @@ Pebble.addEventListener('showConfiguration', function(e){
 
 Pebble.addEventListener('webviewclosed', function(e){
 	  var config = JSON.parse(decodeURIComponent(e.response));
-    dp_util.logLocal('Configuration Response: ' + JSON.stringify(e));
+    dp_util.logLocal('Configuration Response: ', JSON.stringify(e));
     dp_util.logLocal('Configuration window returned: ', JSON.stringify(config));
 
 	  if(config)
